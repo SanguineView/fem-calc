@@ -18,14 +18,15 @@ let numPeople = 1
 let billAmount = 0
 let billTotal = 0
 let tipAmount = 0
+let tipPrct = 0
 
 // set bill total based on input
 
 const setBillAmount = () => {
     billAmount = parseInt(billAmountField.value)
     billTotal = billAmount + tipAmount
-    console.log(`the bill is ${billAmount}`)
-    personTotalField.textContent = `$${billAmount}`
+    
+    updateBill()
 }
 
 billAmountField.addEventListener('change', setBillAmount)
@@ -33,8 +34,12 @@ billAmountField.addEventListener('change', setBillAmount)
 // set tip percentage
 
 const setButtonTipAmount = (e) => {
+
+    tipBtn.forEach((button) => button.classList.remove('active'))
+    customTip.value = 0
+    e.target.classList.toggle('active')
+
     let button = e.target.getAttribute("id")
-    let tipPrct
     if (button == '5p') {
         tipPrct = 0.05
     } else if (button == '10p') {
@@ -47,9 +52,7 @@ const setButtonTipAmount = (e) => {
         tipPrct = 0.50
     }
     
-    tipAmount = billAmount * tipPrct
-    personTipField.textContent = `$${tipAmount}`
-    console.log(`you're tipping ${tipAmount}`)
+
     updateBill()
 }
 
@@ -58,12 +61,8 @@ tipBtn.forEach((button) => {
 })
 
 const setCustomTipAmount = (e) => {
-    let tipPrct
     tipPrct = parseInt(customTip.value) / 100
-    
-    tipAmount = billAmount * tipPrct
-    personTipField.textContent = `$${tipAmount}`
-    console.log(`you're tipping ${tipAmount}`)
+    tipBtn.forEach((button) => button.classList.remove('active'))
     updateBill()
 }
 
@@ -80,9 +79,11 @@ const setPeopleAmount = () => {
 
 const updateBill = () => {
 
+    tipAmount = (billAmount * tipPrct) / numPeople
+    personTipField.textContent = `$${tipAmount.toFixed(2)}`
+
     let newTotal = (billTotal + tipAmount) / numPeople
-    personTotalField.textContent = `$${newTotal}`
-    console.log(`the new total is ${newTotal}`)
+    personTotalField.textContent = `$${newTotal.toFixed(2)}`
 }
 
 peopleField.addEventListener('change', setPeopleAmount)
@@ -90,11 +91,13 @@ peopleField.addEventListener('change', setPeopleAmount)
 // reset 
 
 const resetBill = () => {
+    billTotal = 0
     customTip.value = 0
     billAmountField.value = 0
     personTipField.textContent = 0.00
     personTotalField.textContent = 0.00
     peopleField.value = 1
+    tipBtn.forEach((button) => button.classList.remove('active'))
 }
 
 resetBtn.addEventListener('click', resetBill)
