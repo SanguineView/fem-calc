@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"> 
+  <title>Frontend Mentor | Tip calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>Splitter</h1>
+    <div class="calc">
+      <div class="calc__form calc--half">
+        <h3>Bill</h3>
+        <input type="number" id="billAmount" class="tipField tipField--money" placeholder="0">
+        <h3>Select Tip %</h3>
+        <div class="tipSelect">
+          <button class="button tipSelect--tipField tipSelect--choice" id="5p">5%</button>
+          <button class="button tipSelect--tipField tipSelect--choice" id="10p">10%</button>
+          <button class="button tipSelect--tipField tipSelect--choice" id="15p">15%</button>
+          <button class="button tipSelect--tipField tipSelect--choice" id="25p">25%</button>
+          <button class="button tipSelect--tipField tipSelect--choice" id="50p">50%</button>
+          <input type="text" id="customTip" class="tipField tipSelect--tipField" placeholder="Custom">
+        </div>
+        <h3>Number of People</h3>
+        <input type="number" class="tipField tipField--people" id="peopleAmount" placeholder="1">
+      </div>
+      <div class="calc--half calc--halfResults">
+        <div class="calc__results">
+          <div class="calc__results--detail">
+            <div class="calc__results--detailLabel">
+              <h4>Tip Amount</h4>
+              <p>/ person</p>
+            </div>
+            <div class="calc__results--detail--amount">
+              <p id="personTip">$0.00</p>
+            </div>
+          </div>
+          <div class="calc__results--detail">
+            <div class="calc__results--detailLabel">
+              <h4>Total</h4>
+              <p>/ person</p>
+            </div>
+            <div class="calc__results--detail--amount">
+              <p id="personTotal">$0.00</p>
+            </div>
+          </div>
+          <button class="button" id="resetBtn">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="http://relative.li">Ryan McGuire</a>.
+  </div>
+  <script src="jsWork.js"></script>
+</body>
+</html>
