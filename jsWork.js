@@ -92,6 +92,7 @@ peopleField.addEventListener('change', setPeopleAmount)
 function resetBill() {
     billTotal = 0
     tipAmount = 0
+    tipPrct = 0
     billAmountField.value = 0
     customTip.value = 0
     peopleField.value = 1
