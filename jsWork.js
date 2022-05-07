@@ -2,11 +2,6 @@
 const billAmountField = document.getElementById('billAmount')
 const peopleField = document.getElementById('peopleAmount')
 const tipBtn = document.querySelectorAll('.tipSelect--choice')
-const fivePercentBtn = document.getElementById('5p');
-const tenPercentBtn = document.getElementById('10p');
-const fifteenPercentBtn = document.getElementById('15p');
-const twentyfivePercentBtn = document.getElementById('25p');
-const fiftyPercentBtn = document.getElementById('50p');
 const customTip = document.getElementById('customTip')
 const personTipField = document.getElementById('personTip')
 const personTotalField = document.getElementById('personTotal')
@@ -21,9 +16,16 @@ let tipPrct = 0
 
 // set bill total based on input
 
-const setBillAmount = () => {
+function setBillAmount() {
     billAmount = parseInt(billAmountField.value)
-    billTotal = billAmount + tipAmount
+
+    if (isNaN(billAmount) || billAmount < 0) {
+        alert('Sorry, the bill needs to be a positive numerical amount.')
+        billAmountField.value = 0
+        return
+    } else {
+        billTotal = billAmount + tipAmount
+    }
     
     updateBill()
 }
@@ -62,7 +64,18 @@ tipBtn.forEach((button) => {
 function setCustomTipAmount(e) {
     tipPrct = parseInt(customTip.value) / 100
     tipBtn.forEach((button) => button.classList.remove('active'))
-    updateBill()
+
+    if (isNaN(tipPrct) || tipPrct < 0) {
+        alert('Sorry, the tip needs to be a positive numerical amount.')
+        customTip.value = ''
+        return
+    } else {
+        updateBill()
+    }
+
+
+
+    
 }
 
 customTip.addEventListener('change', setCustomTipAmount)
@@ -71,7 +84,13 @@ customTip.addEventListener('change', setCustomTipAmount)
 
 function setPeopleAmount() {
     numPeople = parseInt(peopleField.value)
-    updateBill()
+
+    if (isNaN(numPeople) || numPeople <= 0) {
+        alert('Sorry, you need a number of people greater than 0.')
+        peopleField.value = ''
+    } else {
+        updateBill()
+    }
 }
 
 // updating bill fn
