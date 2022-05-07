@@ -20,7 +20,7 @@ function setBillAmount() {
     billAmount = parseInt(billAmountField.value)
 
     if (isNaN(billAmount) || billAmount < 0) {
-        alert('Sorry, the bill needs to be a positive numerical amount.')
+        alert(`Sorry, I can't pay in letters and I ain't paying you.`)
         billAmountField.value = 0
         return
     } else {
@@ -52,7 +52,6 @@ function setButtonTipAmount(e) {
     } else if (button == '50p') {
         tipPrct = 0.50
     }
-    
 
     updateBill()
 }
@@ -66,15 +65,12 @@ function setCustomTipAmount(e) {
     tipBtn.forEach((button) => button.classList.remove('active'))
 
     if (isNaN(tipPrct) || tipPrct < 0) {
-        alert('Sorry, the tip needs to be a positive numerical amount.')
+        alert('Sorry, I need a numerical percentage.')
         customTip.value = ''
         return
     } else {
         updateBill()
     }
-
-
-
     
 }
 
@@ -86,7 +82,7 @@ function setPeopleAmount() {
     numPeople = parseInt(peopleField.value)
 
     if (isNaN(numPeople) || numPeople <= 0) {
-        alert('Sorry, you need a number of people greater than 0.')
+        alert('Sorry, someone has to pay up.')
         peopleField.value = ''
     } else {
         updateBill()
